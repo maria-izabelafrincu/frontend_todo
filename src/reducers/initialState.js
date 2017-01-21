@@ -1,3 +1,4 @@
 export default {
-  toDos: []
+  toDos: [],
+  ajaxCallsInProgress:0
 };

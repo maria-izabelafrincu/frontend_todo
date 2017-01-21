@@ -1,5 +1,6 @@
 import * as types from '../actions/actionTypes';
 import initialState from './initialState';
+
 export default function toDoReducer(state = initialState.toDos, action){
   switch (action.type) {
     case types.LOAD_TODOS_SUCCESS:
@@ -10,7 +11,7 @@ export default function toDoReducer(state = initialState.toDos, action){
           ];
     case types.UPDATE_TODO_SUCCESS:
       return [
-        ...state.filter(toDo => toDo.id !== action.toDo.id),
+        ...state.filter(toDo => toDo.title !== action.toDo.title),
         Object.assign({}, action.toDo)
       ];
     default:

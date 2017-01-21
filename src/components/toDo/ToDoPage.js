@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import ToDoList from './ToDoList';
 import {browserHistory} from 'react-router';
 
-class HomePage extends React.Component {
+class ToDoPage extends React.Component {
   constructor(props, context){
     super(props, context);
     this.redirectToAddToDoPage = this.redirectToAddToDoPage.bind(this);
@@ -34,7 +34,7 @@ class HomePage extends React.Component {
   }
 }
 
-HomePage.propTypes ={
+ToDoPage.propTypes ={
   toDos: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
@@ -50,4 +50,4 @@ function mapDispatchToProps(dispatch){
     actions: bindActionCreators(toDoActions, dispatch)
   };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(ToDoPage);

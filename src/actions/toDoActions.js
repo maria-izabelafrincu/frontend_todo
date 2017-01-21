@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import toDoApi from '../api/mockToDoApi';
+import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 export function loadToDosSuccess(toDos) {
   return { type: types.LOAD_TODOS_SUCCESS, toDos};
@@ -30,12 +31,12 @@ export function loadToDos(){
 
 export function saveToDo(toDo) {
   return function (dispatch, getState) {
-    //dispatch(beginAjaxCall());
+    dispatch(beginAjaxCall());
     return toDoApi.saveToDo(toDo).then(toDo => {
       toDo.id ? dispatch(updateToDoSuccess(toDo)) :
         dispatch(createToDoSuccess(toDo));
     }).catch(error => {
-      //dispatch(ajaxCallError(error));
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };

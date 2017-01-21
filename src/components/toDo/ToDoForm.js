@@ -13,9 +13,9 @@ const ToDoForm = ({toDo, onSave, onChange, saving, errors}) => {
         error={errors.title}/>
 
       <TextInput
-        name="descripton"
-        label="Descripton"
-        value={toDo.descripton}
+        name="description"
+        label="Description"
+        value={toDo.description}
         onChange={onChange}
         error={errors.category}/>
 

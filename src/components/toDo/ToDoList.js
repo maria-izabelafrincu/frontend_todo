@@ -10,12 +10,11 @@ const ToDoList = ({toDos}) => {
         <th>Description</th>
         <th>Created on</th>
         <th>Updated on</th>
-        <th>&nbsp;</th>
       </tr>
       </thead>
       <tbody>
       {toDos.map(toDo =>
-        <ToDoListRow key={toDo.id} toDo={toDo}/>
+        <ToDoListRow key={toDo.title} toDo={toDo}/>
       )}
       </tbody>
     </table>
@@ -23,8 +22,7 @@ const ToDoList = ({toDos}) => {
 };
 
 ToDoList.propTypes = {
-  toDos: PropTypes.array.isRequired,
-  toDo: PropTypes.object.isRequired
+  toDos: PropTypes.array.isRequired
 };
 
 export default ToDoList;

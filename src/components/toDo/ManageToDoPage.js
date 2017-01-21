@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as toDoActions from '../../actions/toDoActions';
 import ToDoForm from './ToDoForm';
+import toastr from 'toastr';
 
 class ManageToDoPage extends React.Component {
   constructor(props, context) {
@@ -10,7 +11,8 @@ class ManageToDoPage extends React.Component {
 
     this.state = {
       toDo: Object.assign({}, props.toDo),
-      errors: {}
+      errors: {},
+      saving: false
     };
 
     this.updateToDoState = this.updateToDoState.bind(this);
@@ -19,7 +21,7 @@ class ManageToDoPage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.toDo.id != nextProps.toDo.id) {
+    if (this.props.toDo.title != nextProps.toDo.title) {
       // Necessary to populate form when existing course is loaded directly.
       this.setState({toDo: Object.assign({}, nextProps.toDo)});
     }
@@ -34,7 +36,18 @@ class ManageToDoPage extends React.Component {
 
   saveToDo(event){
     event.preventDefault();
-    this.props.actions.saveToDo(this.state.toDo);
+    this.setState({saving:true});
+    this.props.actions.saveToDo(this.state.toDo)
+      .then(() => this.redirect())
+      .catch(error => {
+        toastr.error(error);
+        this.setState({saving: false});
+      });
+  }
+
+  redirect(){
+    this.setState({saving:false});
+    toastr.success('To do saved');
     this.context.router.push('/');
   }
 
@@ -45,13 +58,14 @@ class ManageToDoPage extends React.Component {
         onChange={this.updateToDoState}
         onSave={this.saveToDo}
         errors={this.state.errors}
+        saving={this.state.saving}
       />
     );
   }
 }
 
 ManageToDoPage.propTypes = {
-  toDo: PropTypes.string.isRequired,
+  toDo: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 };
 
@@ -60,17 +74,17 @@ ManageToDoPage.contextTypes = {
   router: PropTypes.object
 };
 
-function getToDoById(toDo, id) {
-  const toDO = toDo.filter(toDo => toDo.id == id);
+function getToDoById(toDo, title) {
+  const toDO = toDo.filter(toDo => toDo.title == title);
   if (toDO) return toDo[0]; //since filter returns an array, have to grab the first.
   return null;
 }
 
 function  mapStateToProps(state, ownProps){
-  const toDoId = ownProps.params.id;
-  let toDo = {id: '', title: '', description: '', created_on: '', updated_on: ''};
-  if(toDoId && state.toDo.length > 0){
-    toDo = getToDoById(state.toDos, toDoId);
+  const toDoTitle = ownProps.params.title;
+  let toDo = {title: '', description: '', created_on: '', updated_on: ''};
+  if(toDoTitle && state.toDos.length > 0){
+    toDo = getToDoById(state.toDos, toDoTitle);
   }
   return{
     toDo: toDo
