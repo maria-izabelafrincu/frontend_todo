@@ -6,10 +6,12 @@ const ToDoList = ({toDos}) => {
     <table className="table">
       <thead>
       <tr>
+        <th>Status</th>
         <th>Title</th>
         <th>Description</th>
         <th>Created on</th>
         <th>Updated on</th>
+        <th>&nbsp;</th>
       </tr>
       </thead>
       <tbody>

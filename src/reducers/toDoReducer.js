@@ -14,6 +14,8 @@ export default function toDoReducer(state = initialState.toDos, action){
         ...state.filter(toDo => toDo.title !== action.toDo.title),
         Object.assign({}, action.toDo)
       ];
+    case types.DELETE_TODO:
+      return state.filter(toDo => toDo.title !== action.toDo.title);
     default:
           return state;
   }

@@ -82,7 +82,7 @@ function getToDoById(toDo, title) {
 
 function  mapStateToProps(state, ownProps){
   const toDoTitle = ownProps.params.title;
-  let toDo = {title: '', description: '', created_on: '', updated_on: ''};
+  let toDo = {title: '', description: '', createdOn: '', updatedOn: '', isDone: ''};
   if(toDoTitle && state.toDos.length > 0){
     toDo = getToDoById(state.toDos, toDoTitle);
   }

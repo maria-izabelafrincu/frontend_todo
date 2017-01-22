@@ -7,32 +7,32 @@ const toDos = [
   {
     title: "react-flux-building-applications",
     description:"Building Applications in React and Flux",
-    created_on: "2017-01-02",
-    updated_on: "2017-01-10"
+    createdOn: "2017-01-02",
+    updatedOn: "2017-01-10"
   },
   {
     title: "clean-code",
     description: "Clean Code: Writing Code for Humans",
-    created_on: "2017-01-02",
-    updated_on: "2017-01-10"
+    createdOn: "2017-01-02",
+    updatedOn: "2017-01-10"
   },
   {
     title: "architecture",
     description: "Architecting Applications for the Real World",
-    created_on: "2017-01-02",
-    updated_on: "2017-01-10"
+    createdOn: "2017-01-02",
+    updatedOn: "2017-01-10"
   },
   {
     title: "career-reboot-for-developer-mind",
     description: "Becoming an Outlier: Reprogramming the Developer Mind",
-    created_on: "2017-01-02",
-    updated_on: "2017-01-10"
+    createdOn: "2017-01-02",
+    updatedOn: "2017-01-10"
   },
   {
     title: "web-components-shadow-dom",
     description: "Web Component Fundamentals",
-    created_on: "2017-01-02",
-    updated_on: "2017-01-10"
+    createdOn: "2017-01-02",
+    updatedOn: "2017-01-10"
   }
 ];
 
