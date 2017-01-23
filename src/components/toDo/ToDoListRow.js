@@ -11,10 +11,7 @@ const ToDoListRow = ({toDo}) => {
       <td>{toDo.createdOn}</td>
       <td>{toDo.updatedOn}</td>
       <td>
-        <input type="submit"
-             value="Delete"
-             className="btn btn-danger"
-             onClick="toDoActions.deleteToDo({toDo.title})" />
+         <button onClick={props.deleteToDo.bind(null, toDo.title)} className="delete">Delete</button>
       </td>
     </tr>
   );

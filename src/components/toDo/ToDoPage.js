@@ -4,11 +4,17 @@ import * as toDoActions from '../../actions/toDoActions';
 import {bindActionCreators} from 'redux';
 import ToDoList from './ToDoList';
 import {browserHistory} from 'react-router';
+import store from '../../store/configureStore';
+import * as toDoApi from '../../api/toDoApi';
 
 class ToDoPage extends React.Component {
   constructor(props, context){
     super(props, context);
     this.redirectToAddToDoPage = this.redirectToAddToDoPage.bind(this);
+  }
+
+  componentDidMount() {
+    toDoApi.getToDos();
   }
 
   toDoRow(toDo, index){
@@ -24,7 +30,7 @@ class ToDoPage extends React.Component {
     return (
       <div className="jumbotron">
         <h1>TO DO</h1>
-        <ToDoList toDos={toDos}/>
+        <ToDoList toDos={toDos} deleteToDo ={toDoApi.deleteToDo} />
         <input type="submit"
                value="Add To Do"
                className="btn btn-primary"
@@ -40,6 +46,8 @@ ToDoPage.propTypes ={
 };
 
 function mapStateToProps(state, ownProps){
+  console.log(store);
+  console.log(state);
   return{
     toDos: state.toDos
   };

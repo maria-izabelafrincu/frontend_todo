@@ -10,7 +10,7 @@ module.exports = {
   entry: [
     'eventsource-polyfill', // necessary for hot reloading with IE
     //'webpack-hot-middleware/client?path=$(HOT_SERVER_URL)/_webpack_hmr', //note that it reloads the page if hot module reloading fails.
-    'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
+    //'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
     './src/index'
   ],
   target: 'web',
